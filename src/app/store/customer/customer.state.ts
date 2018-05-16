@@ -11,6 +11,10 @@ export const initializeCustomerState  = function() {
     lastName: '',
     email: '',
     phone: '',
+    address : '',
+    zip : 0,
+    city : '',
+    state : '',
     isActive: true,
   };
 }

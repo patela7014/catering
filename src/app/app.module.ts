@@ -34,7 +34,7 @@ import * as CustomerReducer from './store/customer/customer.reducer';
 
 const appRoutes: Routes = [
   { path: '', component: CreateOrderComponent },
-  { path: 'order/confirm', component: CompleteOrderComponent },
+  { path: 'customers/create', component: CompleteOrderComponent },
   { path: 'invoice',      component: InvoiceComponent },
 ];
 @NgModule({

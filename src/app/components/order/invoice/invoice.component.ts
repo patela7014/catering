@@ -12,14 +12,18 @@ import { CurrencyPipe } from '@angular/common';
   styleUrls: ['./invoice.component.scss']
 })
 export class InvoiceComponent implements OnInit {
+  today = Date.now();
   orderCartState$: Observable<any>;
   orderTimings: any;
   orderTimingsData : any;
-  constructor(private orderStore: Store<CreateOrderModel>) { }
+  customersState$ : Observable<any>;
+  constructor(private store: Store<any>) { }
   itemsList: any;
   totalCost: number;
+  selectedCustomer : any;
   ngOnInit() {
-    this.orderCartState$ = this.orderStore.select(state => {
+    this.orderCartState$ = this.store.select(state => {
+      console.log('state', state)
       return state;
     });
     const classObj = this;
@@ -54,6 +58,16 @@ export class InvoiceComponent implements OnInit {
       classObj.totalCost = items.reduce(function(prev, curr) {
         return prev + curr.price;
       }, 0);
+
+      if(data.customers !== undefined){
+        this.selectedCustomer = data.customers.customers.find(c => c.id === parseInt(data.orders.orderCart.customerId))
+      }
+
+    });
+
+
+    this.customersState$ = this.store.select('customers');
+    this.customersState$.subscribe((data) => {
     });
   }
 
@@ -62,7 +76,7 @@ export class InvoiceComponent implements OnInit {
       var img = canvas.toDataURL("image/png");
       var doc = new jsPDF();
       doc.addImage(img, 'JPEG', 15, 40, 180, 160);
-      doc.save('testCanvas.pdf');
+      doc.save(`catering-order.pdf`);
     });
   }
 

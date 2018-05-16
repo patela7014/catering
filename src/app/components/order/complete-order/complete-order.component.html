@@ -22,19 +22,6 @@
                       <input [(ngModel)]="customer.lastName" name="lastName" class="form-control" type="text">
                     </div>
                   </div>
-                  <!--<label class="ui-form-label">DELIVERY ADDRESS *</label>-->
-                  <!--<input [(ngModel)]="customer.firstName" class="form-control form-control_second" type="text" placeholder="Street address">-->
-                  <!--<input [(ngModel)]="customer.firstName" class="form-control" type="text" placeholder="Apartment, suite, unit etc. (optional)">-->
-                  <!--<div class="row">-->
-                    <!--<div class="col-md-6">-->
-                      <!--<label class="ui-form-label">TOWN / CITY *</label>-->
-                      <!--<input class="form-control" [(ngModel)]="customer.firstName" type="text" placeholder="Town / City">-->
-                    <!--</div>-->
-                    <!--<div class="col-md-6">-->
-                      <!--<label class="ui-form-label">POSTCODE *</label>-->
-                      <!--<input class="form-control" [(ngModel)]="customer.firstName" type="text" placeholder="Postcode / Zip">-->
-                    <!--</div>-->
-                  <!--</div>-->
                   <div class="row">
                     <div class="col-md-6">
                       <label class="ui-form-label">EMAIL ADDRESS *</label>
@@ -45,6 +32,25 @@
                       <input [(ngModel)]="customer.phone" name="phone"  class="form-control" type="text">
                     </div>
                   </div>
+                  <label class="ui-form-label">DELIVERY ADDRESS *</label>
+                  <input [(ngModel)]="customer.address" name="address" class="form-control form-control_second" type="text" placeholder="Street address">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label class="ui-form-label">TOWN / CITY *</label>
+                      <input class="form-control" name="city" [(ngModel)]="customer.city" type="text" placeholder="Town / City">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="ui-form-label">State *</label>
+                      <input [(ngModel)]="customer.state" name="state"  class="form-control" type="text">
+                    </div>
+
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label class="ui-form-label">POSTCODE *</label>
+                      <input class="form-control" name="zip" [(ngModel)]="customer.zip" type="text" placeholder="Postcode / Zip">
+                    </div>
+                  </div>
                 </section>
                 <!-- end section -->
 
@@ -53,9 +59,13 @@
                   <!--<textarea class="form-control" name="comment" rows="4" placeholder="Notes about your order , e.g. special notes for delivery." required></textarea>-->
                 <!--</section>-->
                 <!-- end section -->
-                <section class="section-area">
-                  <a (click)="createCustomer()" class="form-payment__btn ui-btn ui-btn-primary btn-effect">Create Customer</a>
-                </section>
+
+                <div style="max-width: 800px;
+    margin: auto;
+    padding-top: 30px;"  class="form-group">
+                  <a style="float: left" class="form-payment__btn ui-btn ui-btn-info btn-effect" [routerLink]="['/']" role="button">View Details</a>
+                  <a style="float: right" (click)="createCustomer()" class="form-payment__btn ui-btn ui-btn-primary btn-effect">Create Customer</a>
+                </div>
               </form>
             </div>
             <!-- end col -->

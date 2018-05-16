@@ -10,46 +10,54 @@
               <div class="section__inner">
                 <h1 class="ui-title-page">Houston Catering Seva</h1>
               </div>
-              <button (click)="addDay()">Add Day</button>
-
-              <!-- end section__inner -->
             </div>
-            <!-- end col -->
           </div>
-          <!-- end row -->
         </div>
-        <!-- end container -->
       </div>
       <div class="section_mod-b">
-
-        <form class="pizza-builder" action="post" name="pizza-size">
+        <form class="form-horizontal" role="form" name="pizza-size">
           <div class="container">
             <div class="form-group">
-              <div class="input-group">
-              </div>
+              <a href="#" class="btn btn-info" [routerLink]="['/customers/create']" role="button">Create New Customer</a>
+              <a style="color: white;" class="btn btn-success" (click)="addDay()" role="button">Add Day</a>
+            </div>
+            <div class="form-group">
+              <label for="customerId">Select Customer</label>
+              <ng-container *ngIf="customersState$ | async as customersState;">
+                <ng-container *ngIf="orderCartState$ | async as orderCartState;">
+                <select [(ngModel)]="orderCartState.customerId" name="selectedCustomerId" style="height: auto;" class="col-md-12 form-control" id="customerId">
+                  <option [hidden]="orderCartState.customerId != ''" [selected]="orderCartState.customerId == ''" value=""> -- Please Select --</option>
+                  <ng-container  *ngFor="let customer of customersState.customers;  let k = index">
+                    <option [selected]="orderCartState.customerId == customer.id" value="{{customer.id}}">{{customer.firstName}} {{customer.lastName}} ({{customer.email}})</option>
+                  </ng-container>
+                </select>
+                </ng-container>
+              </ng-container>
             </div>
             <div class="row">
               <ngb-tabset>
                 <ng-container *ngIf="orderCartState$ | async as orderCartState;">
-                  <ng-container  *ngFor="let order of orderCartState.orders.orderCart.orderTimings;  let o = index">
-                    <ngb-tab [title]="orderCartState.orders.orderCart.orderTimings[o]?.tabTitle">
-
+                  <ng-container  *ngFor="let order of orderCartState.orderTimings;  let o = index">
+                    <ngb-tab [title]="orderCartState.orderTimings[o]?.tabTitle">
                       <ng-template ngbTabContent>
                         <div style=" margin-top: 10px;" class="col-md-8" *ngIf="itemListState$ | async as itemListState">
-                          <div class="col-md-6">
-                            <span class="">Delivery Date : </span>
-                            <input name="daypicker"  [(ngModel)]="orderCartState.orders.orderCart.orderTimings[o].deliveryDate" [owlDateTime]="dt" [owlDateTimeTrigger]="dt">
-                            <owl-date-time (afterPickerClosed)="setDate(o)" #dt></owl-date-time>
-
-                            <span class="">Tab Title : </span>
-                            <input [(ngModel)]="orderCartState.orders.orderCart.orderTimings[o].tabTitle" name="tabTitle" class="" type="text">
+                          <div class="form-group">
+                            <label class="col-sm-2 control-label">Delivery Date </label>
+                            <div class="col-sm-4">
+                              <input name="daypicker"  [(ngModel)]="orderCartState.orderTimings[o].deliveryDate" [owlDateTime]="dt" [owlDateTimeTrigger]="dt">
+                              <owl-date-time (afterPickerClosed)="setDate(o)" #dt></owl-date-time>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-sm-2 control-label">Tab Title </label>
+                            <div class="col-sm-4">
+                              <input [(ngModel)]="orderCartState.orderTimings[o].tabTitle" name="tabTitle" class="" type="text">
+                            </div>
                           </div>
                           <div class="accordion accordion_mod-b panel-group" id="accordion-1">
-                            <!-- end panel -->
                             <ng-container *ngFor="let itemCategory of itemListState.items;  let j = index">
                               <div class="panel" >
                                 <div class="panel-heading">
-                                  <!--<a class="btn-collapse"><i class="icon"></i></a>-->
                                   <h3 class="panel-title"><span class="panel-title__number">{{j+1}}.</span>{{itemCategory.categoryName}}</h3>
                                 </div>
                                 <div>
@@ -72,15 +80,11 @@
                                         </label>
                                       </ng-container>
                                     </div>
-                                    <!-- end pizza-builder__wrap-check -->
                                   </div>
-                                  <!-- end panel-body -->
                                 </div>
-                                <!-- end panel-collapse -->
                               </div>
                             </ng-container>
                           </div>
-                          <!-- end accordion -->
                         </div>
                         <app-cart [index]="o" ></app-cart>
                       </ng-template>
@@ -90,9 +94,7 @@
               </ngb-tabset>
 
             </div>
-            <!-- end row -->
           </div>
-          <!-- end container -->
         </form>
       </div>
     </div>

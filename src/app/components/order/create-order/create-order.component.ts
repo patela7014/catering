@@ -8,6 +8,7 @@ import * as OrderActions from '../../../store/order/order.action';
 import CreateOrderModel from '../../../models/create-order.model';
 import {initializeOrderTimingsState} from '../../../models/order-timings.model';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import * as CustomerActions from '../../../store/customer/customer.action';
 
 @Component({
   selector: 'app-create-order',
@@ -19,9 +20,11 @@ export class CreateOrderComponent implements OnInit {
   form: FormGroup;
   itemsArray: any = [];
   orderCart: CreateOrderModel;
+  customersState$: Observable<any>;
   orderCartState$: Observable<any>;
   itemListState$: Observable<ItemState[]>;
   orderCartData : CreateOrderModel;
+  customersData : any;
   itemIndexArr: any = [];
   constructor(fb: FormBuilder, private store: Store<any>, private orderStore: Store<any>) {
     // this.form = fb.group({
@@ -42,10 +45,12 @@ export class CreateOrderComponent implements OnInit {
     this.itemListState$ = this.store.select(state => {
       return state.items
     });
+    this.store.dispatch(new CustomerActions.GetCustomers());
     this.store.dispatch(new ItemActions.GetItems());
-    this.orderCartState$ = this.store.select(state => {
-      this.orderCartData = state.orders.orderCart;
-      return state
+    this.customersState$ = this.store.select('customers');
+    this.orderCartState$ = this.store.select('orders').map((o) => {
+      this.orderCartData = o.orderCart;
+      return o.orderCart;
     });
     // this.orderCartState$.subscribe((data) => console.log('orderCartState$', data)
     // );
