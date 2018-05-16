@@ -1,0 +1,73 @@
+<div class="invoice-box" id="results">
+  <table cellpadding="0" cellspacing="0">
+    <tr class="top">
+      <td colspan="2">
+        <table>
+          <tr>
+            <td class="title">
+              <img class="" style="width:100%; max-width:200px;" src="https://haridhamnj.org/wp-content/uploads/2013/04/logo.png" alt="Logo">
+            </td>
+
+            <td>
+              Invoice #: 123<br>
+              Created: January 1, 2015<br>
+              Due: February 1, 2015
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr class="information">
+      <td colspan="2">
+        <table>
+          <tr>
+            <td>
+              Sparksuite, Inc.<br>
+              12345 Sunny Road<br>
+              Sunnyville, CA 12345
+            </td>
+
+            <td>
+              Acme Corp.<br>
+              John Doe<br>
+              john@example.com
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <ng-container *ngIf="orderTimingsData">
+      <ng-container  *ngFor="let orderTiming of orderTimingsData;  let o = index">
+        {{orderTiming.tabTitle}}
+        <tr class="heading">
+          <td>
+            Item
+          </td>
+
+          <td>
+            Price
+          </td>
+        </tr>
+        <tr class="item" *ngFor="let item of orderTiming.itemData;  let i = index">
+          <td>
+            <span class="">{{item.name}}</span>
+          </td>
+          <td>
+            <span class="">{{item.price | currency:'USD':true:'1.2'}}</span>
+          </td>
+        </tr>
+          <!--<tbody *ngIf="items">-->
+          <!--<tr class="total">-->
+            <!--<td></td>-->
+            <!--<td>-->
+              <!--Total: {{totalCost | currency:'USD':true:'1.2'}}-->
+            <!--</td>-->
+          <!--</tr>-->
+          <!--</tbody>-->
+      </ng-container>
+    </ng-container>
+  </table>
+</div>
+<a class="table-order__btn ui-btn ui-btn-primary btn-effect" [routerLink]="['/']">View Details</a>
+

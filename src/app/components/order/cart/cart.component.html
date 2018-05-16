@@ -1,0 +1,40 @@
+<div class="col-md-4">
+  <section class="section-table-order">
+    <h2 class="table-order__title ui-title-inner">Your Order</h2>
+    <div class="table-container">
+      <table class="table-order">
+        <thead>
+        <tr>
+          <th>ITEMS</th>
+          <th>TOTAL</th>
+        </tr>
+        </thead>
+        <tbody *ngIf="itemsList">
+        <tr *ngFor="let item of itemsList;  let i = index">
+          <td>
+            <div class="enumerator">
+              <span class="">{{item.name}} </span>
+            </div>
+          </td>
+          <td>
+            <span class="table-order__price">
+              {{item.price | currency:'USD':true:'1.2'}}
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <td class="border-cell table-order__base"><b>Delivery Charge:</b><span class="table-order__size"></span></td>
+          <td class="border-cell table-order__base">$8.00</td>
+        </tr>
+        <tr>
+          <td class="table-order__total">Order Total</td>
+          <td class="table-order__total">{{totalCost | currency:'USD':true:'1.2'}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <a class="table-order__btn ui-btn ui-btn-primary btn-effect" (click)="createOrder()">Create Order</a>
+    <a class="table-order__btn ui-btn ui-btn-primary btn-effect" [routerLink]="['/invoice']">View Invoice</a>
+  </section>
+  <!-- end section-table-order -->
+</div>

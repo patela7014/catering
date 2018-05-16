@@ -1,0 +1,45 @@
+/*------------------------------------------------------------------
+[Master Stylesheet]
+
+Project:	Margherita
+Version:	1.0
+Assigned to:	WebNik
+Primary use:	Margherita
+-------------------------------------------------------------------*/
+
+
+/* FONTS*/
+
+@import url(https://fonts.googleapis.com/css?family=Fredericka+the+Great|Abril+Fatface|Josefin+Sans:400,700);
+@import url('../../../../assets/fonts/font-awesome/css/font-awesome.min.css');
+@import url('../../../../assets/fonts/Icon-font-7-stroke/assets/Pe-icon-7-stroke.css');
+
+
+
+/* PLUGIN CSS */
+
+@import url('../../../../assets/css/preloader.css');
+@import url('../../../../assets/plugins/bootstrap/css/bootstrap.css');                           /* bootstrap */
+@import url('../../../../assets/plugins/slidebars/dist/slidebars.css');                          /* sidebar */
+@import url('../../../../assets/plugins/slider-pro/dist/css/slider-pro.css'); /* main slider */
+@import url('../../../../assets/plugins/owl-carousel/owl.carousel.css');                         /* other sliders */
+@import url('../../../../assets/plugins/owl-carousel/owl.transitions.css');                      /* other sliders */
+@import url('../../../../assets/plugins/owl-carousel/owl.theme.css');                            /* other sliders */
+@import url('../../../../assets/plugins/prettyphoto/css/prettyPhoto.css');                       /* modal */
+@import url('../../../../assets/plugins/bootstrap-select/dist/css/bootstrap-select.css');        /* select customization */
+@import url('../../../../assets/plugins/datetimepicker/jquery.datetimepicker.css');              /* date select */
+@import url('../../../../assets/plugins/animate/animate.css');                                   /* animations */
+
+
+
+
+/* MAIN CSS */
+
+@import url('../../../../assets/css/theme.css');
+@import url('../../../../assets/css/sections.css');
+@import url('../../../../assets/css/sidebar.css');
+@import url('../../../../assets/css/blog.css');
+@import url('../../../../assets/css/responsive.css');
+@import url('../../../../assets/css/color.css');
+/*@import url('debugging.css');*/
+

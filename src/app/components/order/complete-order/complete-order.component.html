@@ -1,0 +1,67 @@
+<div class="layout-theme animated-css" id="wrapper" data-header="sticky" data-header-top="200">
+
+  <div id="sb-site">
+
+    <div class="wrap-content">
+      <div class="section_mod-f">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8">
+              <form class="form-details">
+                <section class="section-area">
+
+                  <audio-ng [src]="url" [controls]="true/false" [preload]="'auto'" (register)="someFunction($event)"></audio-ng>
+                  <h2 class="ui-title-inner ui-title-inner_mod-a">Delivery Details</h2>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label class="ui-form-label">FIRST NAME *</label>
+                      <input [(ngModel)]="customer.firstName" name="firstName" class="form-control" type="text">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="ui-form-label">LAST NAME *</label>
+                      <input [(ngModel)]="customer.lastName" name="lastName" class="form-control" type="text">
+                    </div>
+                  </div>
+                  <!--<label class="ui-form-label">DELIVERY ADDRESS *</label>-->
+                  <!--<input [(ngModel)]="customer.firstName" class="form-control form-control_second" type="text" placeholder="Street address">-->
+                  <!--<input [(ngModel)]="customer.firstName" class="form-control" type="text" placeholder="Apartment, suite, unit etc. (optional)">-->
+                  <!--<div class="row">-->
+                    <!--<div class="col-md-6">-->
+                      <!--<label class="ui-form-label">TOWN / CITY *</label>-->
+                      <!--<input class="form-control" [(ngModel)]="customer.firstName" type="text" placeholder="Town / City">-->
+                    <!--</div>-->
+                    <!--<div class="col-md-6">-->
+                      <!--<label class="ui-form-label">POSTCODE *</label>-->
+                      <!--<input class="form-control" [(ngModel)]="customer.firstName" type="text" placeholder="Postcode / Zip">-->
+                    <!--</div>-->
+                  <!--</div>-->
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label class="ui-form-label">EMAIL ADDRESS *</label>
+                      <input [(ngModel)]="customer.email" name="email"  class="form-control" type="text">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="ui-form-label">PHONE *</label>
+                      <input [(ngModel)]="customer.phone" name="phone"  class="form-control" type="text">
+                    </div>
+                  </div>
+                </section>
+                <!-- end section -->
+
+                <!--<section class="section_mod-h">-->
+                  <!--<label class="ui-form-label">ORDER NOTES</label>-->
+                  <!--<textarea class="form-control" name="comment" rows="4" placeholder="Notes about your order , e.g. special notes for delivery." required></textarea>-->
+                <!--</section>-->
+                <!-- end section -->
+                <section class="section-area">
+                  <a (click)="createCustomer()" class="form-payment__btn ui-btn ui-btn-primary btn-effect">Create Customer</a>
+                </section>
+              </form>
+            </div>
+            <!-- end col -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
