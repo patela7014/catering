@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {ItemListState, ItemState} from '../../../store/item/item.state';
 import {Observable} from 'rxjs/Rx';
@@ -25,7 +25,10 @@ export class CreateOrderComponent implements OnInit {
   itemListState$: Observable<ItemState[]>;
   orderCartData : CreateOrderModel;
   customersData : any;
+  itemCostData : any;
   itemIndexArr: any = [];
+  public myFocusTriggeringEventEmitter = new EventEmitter<boolean>();
+
   constructor(fb: FormBuilder, private store: Store<any>, private orderStore: Store<any>) {
     // this.form = fb.group({
     //   start: [moment('2015-11-18T00:00Z'), Validators.required],
@@ -34,6 +37,9 @@ export class CreateOrderComponent implements OnInit {
     // });
   }
 
+
+
+
   date: Date = new Date();
   settings = {
     bigBanner: true,
@@ -41,6 +47,7 @@ export class CreateOrderComponent implements OnInit {
     format: 'dd-MM-yyyy',
     defaultOpen: true
   }
+
   ngOnInit() {
     this.itemListState$ = this.store.select(state => {
       return state.items
@@ -64,7 +71,6 @@ export class CreateOrderComponent implements OnInit {
 
   updateCart(index, item, e) {
     let state = this.orderCartData.orderTimings;
-    console.log('state', state)
     this.itemsArray = this.orderCartData.orderTimings[index].items;
     if(e.target.checked){
       if(this.itemsArray.findIndex(it => it.itemId === item) === -1){
@@ -88,7 +94,8 @@ export class CreateOrderComponent implements OnInit {
   updateItemPrice(index, item, value){
     this.orderCartData.orderTimings[index].items.find(it => it.itemId === item.id).price = parseInt(value);
     console.log('this.orderCartData.orderTimings', this.orderCartData.orderTimings, value)
-    this.updateCartData(index)
+    this.updateCartData(index);
+    this.myFocusTriggeringEventEmitter.emit(true);
   }
 
   itemPriceVal(index, item){

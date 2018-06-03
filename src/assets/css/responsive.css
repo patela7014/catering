@@ -226,6 +226,13 @@
 		padding-left: 60px;
 		padding-right: 60px;
 	}
+  .section_mod-b{margin-bottom: 15px;padding: 20px 0 0;}
+  .accordion_mod-b{margin-top: 30px;}
+  .form-group{padding: 0 10px;}
+  .section-title{padding: 15px 0;}
+  input{width: 100%;}
+  .header,.header__wrap{height: auto;}
+  .header .logo{padding:15px 0 5px;}
 }
 
 /* end max-width:767px */
@@ -239,6 +246,7 @@
 	.slider-reviews__item {width: 430px;}
 	.decor-top-line:before, .decor-top-line:after {width: 183px;}
 	.footer-contacts__number {font-size: 62px;}
+  .pizza-builder__item{width: 30%;}
 }
 
 /*320 x 480 (iPhone)*/
@@ -261,7 +269,7 @@
 	.footer-decor {margin-top: 60px;}
 	.cart__radio-label {display: block;}
 	.cart__btn {margin-top: 10px;}
-	.ui-title-page {font-size: 60px;}
+	.ui-title-page {font-size: 30px;}
 	.comments-list .children {margin-left: 50px;}
 	.pager .previous > a .icon, .pager .previous > span .icon {margin-right: 0;}
 	.pager .next > a .icon, .pager .next > span .icon {margin-left: 0;}
@@ -272,4 +280,8 @@
 	.accordion_mod-b .panel-title {
 		padding-right: 80px;
 	}
+  .pizza-builder__item{width: 48%;padding: 5px;}
+  .accordion .pizza-builder__check-name{font-size: 14px;}
+  .accordion .panel-title__number{display: inline-block;margin-right: 5px;font-size: 20px;}
+  .accordion .panel-title{padding-right: 0;font-size: 20px;}
 }

@@ -1,10 +1,13 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import * as jsPDF from 'jspdf';
 import * as html2canvas from 'html2canvas';
+import * as html2pdf from 'html2pdf.js';
+
 import {Observable} from 'rxjs/Rx';
 import CreateOrderModel from '../../../models/create-order.model';
 import {Store} from '@ngrx/store';
 import { CurrencyPipe } from '@angular/common';
+import * as OrderActions from '../../../store/order/order.action';
 
 @Component({
   selector: 'app-invoice',
@@ -69,15 +72,21 @@ export class InvoiceComponent implements OnInit {
     this.customersState$ = this.store.select('customers');
     this.customersState$.subscribe((data) => {
     });
+
+    console.log('jgjkhg', document.getElementById('results').innerHTML)
   }
 
   download(){
-    html2canvas(document.getElementById('results')).then(function(canvas) {
-      var img = canvas.toDataURL("image/png");
-      var doc = new jsPDF();
-      doc.addImage(img, 'JPEG', 15, 40, 180, 160);
-      doc.save(`catering-order.pdf`);
-    });
+    let element = document.getElementById('results');
+    let opt = {
+      margin:       0.2,
+      filename:     'catering-order.pdf',
+      image:        { type: 'jpeg', quality: 0.98 },
+      html2canvas:  { scale: 2 },
+      jsPDF:        { unit: 'in', format: 'letter', orientation: 'landscape' }
+    };
+
+    html2pdf(element, opt);
   }
 
 }

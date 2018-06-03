@@ -1,80 +1,102 @@
-<div class="invoice-box" id="results">
-  <table cellpadding="0" cellspacing="0">
-    <tr class="top">
-      <td colspan="2">
-        <table>
-          <tr>
-            <td class="title">
-            </td>
-            <td>
-              {{today | date:'fullDate'}}
-            </td>
-          </tr>
-        </table>
-      </td>
-    </tr>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
-    <tr class="information">
-      <td colspan="2">
-        <table>
-          <tr>
-            <td>
-              <ng-container *ngIf="selectedCustomer">
-                {{selectedCustomer.address}}<br>
-                {{selectedCustomer.city}}, {{selectedCustomer.state}} {{selectedCustomer.zip}}
-              </ng-container>
-            </td>
+<div class="container"  id="results">
+  <div class="row">
+    <div style="max-width: 1000px;" class="col-xs-12">
+      <div class="invoice-title">
+        <h2>Invoice</h2>
+        <!--<h3 class="pull-right">Order # 12345</h3>-->
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-xs-6">
+          <!--<address>-->
+            <!--<strong>Billed To:</strong><br>-->
+            <!--John Smith<br>-->
+            <!--1234 Main<br>-->
+            <!--Apt. 4B<br>-->
+            <!--Springfield, ST 54321-->
+          <!--</address>-->
+        </div>
+        <div class="col-xs-6 text-right">
+          <address>
+            <strong>Customer Info:</strong><br>
+            <ng-container *ngIf="selectedCustomer">
+              {{selectedCustomer.firstName}} {{selectedCustomer.lastName}}<br>
+              {{selectedCustomer.email}}<br>
+              {{selectedCustomer.phone}} <br>
+              {{selectedCustomer.address}}<br>
+              {{selectedCustomer.city}}, {{selectedCustomer.state}} {{selectedCustomer.zip}}
+            </ng-container>
+          </address>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6">
+        </div>
+        <div class="col-xs-6 text-right">
+          <address>
+            <strong>Order Date:</strong><br>
+            {{today | date:'fullDate'}}
+            <br><br>
+          </address>
+        </div>
+      </div>
+    </div>
+  </div>
 
-            <td>
-              <ng-container *ngIf="selectedCustomer">
-                {{selectedCustomer.firstName}} {{selectedCustomer.lastName}}<br>
-                {{selectedCustomer.email}}<br>
-                {{selectedCustomer.phone}}
-              </ng-container>
-            </td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-    <ng-container *ngIf="orderTimingsData">
-      <ng-container  *ngFor="let orderTiming of orderTimingsData;  let o = index">
-        <strong>{{orderTiming.tabTitle}} - {{orderTiming.deliveryDate| date:'fullDate'}}</strong>
-        <br><br>
-        <tr class="heading">
-          <td>
-            Item
-          </td>
+  <ng-container *ngIf="orderTimingsData">
+    <ng-container  *ngFor="let orderTiming of orderTimingsData;  let o = index">
+      <div class="row">
+        <div style="max-width: 1000px;" class="col-md-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title"><strong>{{orderTiming.tabTitle}} - {{orderTiming.deliveryDate| date:'fullDate'}}</strong></h3>
+            </div>
+            <div class="panel-body">
+              No. of People :
+              {{orderTiming.numberOfPeople}}
+            </div>
+            <div class="panel-body">
+              Delivery Address :
+              {{orderTiming.deliveryAddress}}
+            </div>
 
-          <td>
-            Price
-          </td>
-        </tr>
-        <tr class="item" *ngFor="let item of orderTiming.itemData;  let i = index">
-          <td>
-            <span class="">{{item.name}}</span>
-          </td>
-          <td>
-            <span class="">{{item.price | currency:'USD':true:'1.2'}}</span>
-          </td>
-        </tr>
-        <br>
-          <!--<tbody *ngIf="items">-->
-          <!--<tr class="total">-->
-            <!--<td></td>-->
-            <!--<td>-->
-              <!--Total: {{totalCost | currency:'USD':true:'1.2'}}-->
-            <!--</td>-->
-          <!--</tr>-->
-          <!--</tbody>-->
-      </ng-container>
+            <div class="panel-body">
+              <div class="table-responsive">
+                <table class="table table-condensed">
+                  <thead>
+                  <tr>
+                    <td><strong>Item</strong></td>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <!-- foreach ($order->lineItems as $line) or some such thing here -->
+                  <tr class="item" *ngFor="let item of orderTiming.itemData;  let i = index">
+                    <td>
+                      <span class="">{{item.name}}</span>
+                    </td>
+                    <!--<td>-->
+                    <!--<span class="">{{item.price | currency:'USD':true:'1.2'}}</span>-->
+                    <!--</td>-->
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </ng-container>
-  </table>
+  </ng-container>
+
 </div>
 <form class="form-horizontal" role="form" name="pizza-size">
   <div class="container">
     <div style="max-width: 800px;
     margin: auto;
-    padding-top: 30px;"  class="form-group">
+    padding: 30px 0 20px;"  class="form-group">
       <a  class="btn btn-info" [routerLink]="['/']" role="button">View Details</a>
       <a  style="float: right" class="btn btn-success" (click)="download()" role="button">Download</a>
     </div>

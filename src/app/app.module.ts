@@ -30,8 +30,7 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {CustomerEffects} from './store/customer/customer.effects';
 import * as CustomerReducer from './store/customer/customer.reducer';
-
-
+import {HashLocationStrategy, Location, LocationStrategy} from '@angular/common';
 const appRoutes: Routes = [
   { path: '', component: CreateOrderComponent },
   { path: 'customers/create', component: CompleteOrderComponent },
@@ -71,6 +70,7 @@ const appRoutes: Routes = [
   ],
   providers: [
     TodoService,
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   bootstrap: [AppComponent]

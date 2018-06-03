@@ -40,20 +40,39 @@
                   <ng-container  *ngFor="let order of orderCartState.orderTimings;  let o = index">
                     <ngb-tab [title]="orderCartState.orderTimings[o]?.tabTitle">
                       <ng-template ngbTabContent>
-                        <div style=" margin-top: 10px;" class="col-md-8" *ngIf="itemListState$ | async as itemListState">
+                        <div style=" margin-top: 10px;" class="col-md-8 col-lg-8 col-md-12" *ngIf="itemListState$ | async as itemListState">
                           <div class="form-group">
-                            <label class="col-sm-2 control-label">Delivery Date </label>
+                            <label class="col-sm-3 control-label">Delivery Date </label>
                             <div class="col-sm-4">
                               <input name="daypicker"  [(ngModel)]="orderCartState.orderTimings[o].deliveryDate" [owlDateTime]="dt" [owlDateTimeTrigger]="dt">
                               <owl-date-time (afterPickerClosed)="setDate(o)" #dt></owl-date-time>
                             </div>
                           </div>
                           <div class="form-group">
-                            <label class="col-sm-2 control-label">Tab Title </label>
+                            <label class="col-sm-3 control-label">Tab Title </label>
                             <div class="col-sm-4">
                               <input [(ngModel)]="orderCartState.orderTimings[o].tabTitle" name="tabTitle" class="" type="text">
                             </div>
                           </div>
+                          <div class="form-group">
+                            <label class="col-sm-3 control-label">Delivery Charge </label>
+                            <div class="col-sm-4">
+                              <input (ngModelChange)="updateCartData(o)" [(ngModel)]="orderCartState.orderTimings[o].deliveryCharge" name="deliveryCharge" class="" type="text">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-sm-3 control-label">No. of People</label>
+                            <div class="col-sm-4">
+                              <input (ngModelChange)="updateCartData(o)" [(ngModel)]="orderCartState.orderTimings[o].numberOfPeople" name="numberOfPeople" class="" type="text">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-sm-3 control-label">Delivery Address </label>
+                            <div class="col-sm-8">
+                              <textarea class="form-control" (ngModelChange)="updateCartData(o)" [(ngModel)]="orderCartState.orderTimings[o].deliveryAddress" name="deliveryAddress" rows="4" placeholder="Delivery Address" required></textarea>
+                            </div>
+                          </div>
+
                           <div class="accordion accordion_mod-b panel-group" id="accordion-1">
                             <ng-container *ngFor="let itemCategory of itemListState.items;  let j = index">
                               <div class="panel" >
@@ -75,7 +94,7 @@
                                           <i class="icon-check fa fa-check"></i>
 
                                           <ng-container *ngIf="checkedOrder(o, item)">
-                                            <input style="color: black" (input)="updateItemPrice(o,item,$event.target.value)" [value]="itemPriceVal(o,item)" name="itemPrice" class="" type="text">
+                                            <input style="color: black" [focus]="myFocusTriggeringEventEmitter" (keyup)="updateItemPrice(o,item, $event.target.value)" [value]="itemPriceVal(o,item)" name="itemPrice" class="" type="text">
                                           </ng-container>
                                         </label>
                                       </ng-container>
@@ -86,7 +105,7 @@
                             </ng-container>
                           </div>
                         </div>
-                        <app-cart [index]="o" ></app-cart>
+                        <app-cart [index]="o" [deliveryCharge]="orderCartState.orderTimings[o].deliveryCharge" ></app-cart>
                       </ng-template>
                     </ngb-tab>
                   </ng-container>

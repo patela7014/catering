@@ -1770,5 +1770,31 @@ h3.h3-inner {
 .slider_mod-d.owl-theme .owl-controls .owl-buttons .owl-next {
 	right: 0;
 }
+/*mohit*/
+.accordion .panel-title__number{font-size :26px;vertical-align: baseline;}
+.accordion .panel-title{font-size :26px;font-family: "Helvetica Neue", Helvetica, "DejaVu Sans", Arial, sans-serif;}
+.accordion .pizza-builder__check-name{font-size: 16px;font-family: "Helvetica Neue", Helvetica, "DejaVu Sans", Arial, sans-serif;color: #000;}
+.accordion input[type=text]{width: 100%;}
 
+.icon-check.fa.fa-check{display: none;}
+.pizza-builder__check[_ngcontent-c1]:checked + .pizza-builder__item[_ngcontent-c1] > .pizza-builder__check-name{color: #D94F2B;font-weight: bold;}
+select{cursor: pointer;}
 
+.section-table-order{background-color:#443831 !important;color: #fff;}
+
+.accordion .panel-title{
+  font-size: 26px;color: #faad1c;
+}
+#sb-site{background: #F5F5F5;}
+.accordion .pizza-builder__check-name{margin-top: 0;min-height: 36px;}
+.accordion .panel-heading{padding: 10px 0;}
+.panel-body,.panel{padding: 0;}
+.panel{box-shadow: none;}
+.pizza-builder__item{padding: 10px;}
+.pizza-builder__check-description{margin-bottom: 0;}
+.section-table-order .table-order__total{font-weight: bold;font-size: 16px;}
+.table-order__title{color: #faad1c;}
+.table-order__btn{background: #faad1c !important;border-color:#faad1c !important;}
+textarea.form-control{background: #fff;}
+input{padding: 0 5px;}
+textarea{padding:5px;}

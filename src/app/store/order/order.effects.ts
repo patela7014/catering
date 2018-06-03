@@ -12,10 +12,19 @@ import { of } from 'rxjs/observable/of';
 import { HttpClient } from '@angular/common/http';
 import * as ItemActions from '../item/item.action';
 import * as OrderActions from './order.action';
+import * as CustomerActions from '../customer/customer.action';
 
 @Injectable()
 export class OrderEffects {
 
+  static saveByteArray(reportName, byte) {
+    const blob = new Blob([byte]);
+    const link = document.createElement('a');
+    link.href = window.URL.createObjectURL(blob);
+    const fileName = reportName + ".pdf";
+    link.download = fileName;
+    link.click();
+  }
   constructor(
     private http: HttpClient,
     private actions$: Actions
@@ -33,4 +42,31 @@ export class OrderEffects {
           .catch(() => of(new ItemActions.GetItemsError()))
       }
     );
+
+  @Effect()
+  downloadOrderReport$: Observable<Action> = this.actions$.
+  ofType<OrderActions.DownloadOrderReport>(OrderActions.DOWNLOAD_ORDER_REPORT)
+    .mergeMap(action =>
+      {
+        return this.http.post(environment.client.base_url + '/api/orders/report', action.payload)
+          .map((data: any) => {
+            OrderEffects.saveByteArray("HELLO", data)
+            return new OrderActions.DownloadOrderReportSuccess();
+          })
+          .catch(() => of(new ItemActions.GetItemsError()))
+      }
+    );
+
+    base64ToArrayBuffer(base64) {
+      const binaryString = window.atob(base64);
+      const binaryLen = binaryString.length;
+      const bytes = new Uint8Array(binaryLen);
+      for (let i = 0; i < binaryLen; i++) {
+        const ascii = binaryString.charCodeAt(i);
+        bytes[i] = ascii;
+      }
+      return bytes;
+    }
+
+
 }

@@ -16,6 +16,7 @@ export class CartComponent implements OnInit {
   itemsList: any;
   totalCost: number;
   @Input() index = 0;
+  @Input() deliveryCharge = 0;
   @Input() items: any = [];
   ngOnInit() {
     this.orderCartState$ = this.orderStore.select(state => {
@@ -40,9 +41,10 @@ export class CartComponent implements OnInit {
         };
       });
 
+      // console.log('charge', data.orders.orderCart.orderTimings[this.index].deliveryCharge)
       classObj.totalCost = items.reduce(function(prev, curr) {
         return prev + curr.price;
-      }, 0);
+      }, parseInt(data.orders.orderCart.orderTimings[this.index].deliveryCharge));
     });
   }
 

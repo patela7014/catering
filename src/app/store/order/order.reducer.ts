@@ -28,6 +28,11 @@ export function OrderReducer(state = defaultState, action: Action) {
             };
             return newState;
         }
+        case OrderActions.DOWNLOAD_ORDER_REPORT:
+        case OrderActions.DOWNLOAD_ORDER_REPORT_SUCCESS:
+          {
+          return state;
+        }
         default: {
             return state;
         }
